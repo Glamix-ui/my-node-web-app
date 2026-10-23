@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Node.js Frontend App</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 min-h-screen flex items-center justify-center text-white">
+    <div class="bg-white/10 backdrop-blur-lg border border-white/20 p-8 rounded-2xl shadow-2xl max-w-md w-full text-center">
+        <h1 class="text-3xl font-extrabold mb-3 tracking-tight bg-gradient-to-r from-pink-400 to-cyan-400 bg-clip-text text-transparent">
+            Node.js + Frontend
+        </h1>
+        <p class="text-gray-300 mb-6 text-sm">
+            Your Node.js server is successfully serving this beautiful HTML & JavaScript page!
+        </p>
+        <button id="magicBtn" class="w-full py-3 px-6 bg-gradient-to-r from-pink-500 to-violet-600 hover:from-pink-600 hover:to-violet-700 font-semibold rounded-xl shadow-lg transition-all duration-300 cursor-pointer">
+            Click for Magic ✨
+        </button>
+        <div id="output" class="mt-4 text-sm font-medium text-cyan-300 h-6"></div>
+    </div>
+    <script>
+        const btn = document.getElementById('magicBtn');
+        const output = document.getElementById('output');
+        const messages = [
+            "🚀 JavaScript is running live in your browser!",
+            "💻 Powered by Node.js on the backend.",
+            "🔥 You're building awesome full-stack apps!",
+            "✨ Keep pushing forward!"
+        ];
+        let index = 0;
+        btn.addEventListener('click', () => {
+            output.textContent = messages[index];
+            index = (index + 1) % messages.length;
+        });
+    </script>
+</body>
+</html>
