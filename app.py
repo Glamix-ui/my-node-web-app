@@ -1,26 +1,28 @@
 from flask import Flask, jsonify, send_from_directory
 import psycopg2
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from the .env file
+load_dotenv()
 
 app = Flask(__name__, static_folder='public')
 
-# Database connection helper function
+# Database connection helper function using secure environment variables
 def get_db_connection():
     connection = psycopg2.connect(
-        user="postgres",
-        password="Glamix1!",
-        host="localhost",
-        port="5432",
-        database="postgres"
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        host=os.getenv("DB_HOST"),
+        port=os.getenv("DB_PORT"),
+        database=os.getenv("DB_NAME")
     )
     return connection
 
-# Serve your main website homepage from the 'public' folder
 @app.route('/')
 def home():
     return send_from_directory(app.static_folder, 'index.html')
 
-# API endpoint to get your database records
 @app.route('/data')
 def get_data():
     try:
